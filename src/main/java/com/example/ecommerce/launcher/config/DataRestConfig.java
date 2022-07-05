@@ -32,21 +32,17 @@ public class DataRestConfig implements RepositoryRestConfigurer {
     }
     @Override
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
+        // Disable HTTP methods that customers shouldn't be allowed to access
         HttpMethod[] unsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE, HttpMethod.PATCH};
 
         // configure cors mapping
         cors.addMapping(basePath + "/**").allowedOrigins(allowedOrigins);
-        // disable HTTP methods for Product: Put, Post, Delete
         disableHTTPMethods(Product.class, config, unsupportedActions);
-        // disable HTTP methods for ProductCategory: Put, Post, Delete
         disableHTTPMethods(ProductCategory.class, config, unsupportedActions);
-        // disable HTTP methods for Country/State: Put, Post, Delete
         disableHTTPMethods(Country.class, config, unsupportedActions);
         disableHTTPMethods(State.class, config, unsupportedActions);
-        // disable HTTP methods for Order: Put, Post, Delete
         disableHTTPMethods(Order.class, config, unsupportedActions);
 
-        // call an internal helper method to help us expose the id's
         exposeIds(config);
     }
 

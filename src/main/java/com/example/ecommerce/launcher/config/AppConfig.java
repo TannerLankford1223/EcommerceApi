@@ -8,6 +8,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class AppConfig implements WebMvcConfigurer {
 
+    // Allowed CORS from port 4200
     @Value("${allowed.origins}")
     private String[] allowedOrigins;
 

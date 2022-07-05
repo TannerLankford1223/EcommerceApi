@@ -10,7 +10,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        // protect endpoint for /api/orders
         http.authorizeRequests()
                 .antMatchers("/api/orders/**")
                 .authenticated()
